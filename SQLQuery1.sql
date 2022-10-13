@@ -19,6 +19,7 @@ insert into EmployeePayrollservice(Name,Salary,StartDate)values
 												 ('kiran',35000,GETDATE()),
 												 ('Akshara',45000,GETDATE()),
 												 ('Aditya',85000,GETDATE())
+
 --------UC4 retrive all data--------
 
 select * from EmployeePayrollservice
@@ -35,8 +36,8 @@ AS Date) AND Date(NOW());
 alter table EmployeePayrollservice
 add gender char(1);
 
-update EmployeePayrollservice set gender = 'F' where Id in(1002,1003,1004,1006,1,2,3)
-update EmployeePayrollservice set gender = 'M' where Id in (1005,1007)
+update EmployeePayrollservice set gender = 'F' where Id in(1,2,5)
+update EmployeePayrollservice set gender = 'M' where Id in (3,4,6)
 
 -----UC7 Ability to find sum, average, min, max--------
 
@@ -56,7 +57,34 @@ select max(salary) as maximumsalary from EmployeePayrollservice where gender = '
 select count(salary) as countsalary from EmployeePayrollservice where gender = 'M' group by gender
 select count(salary) as countsalary from EmployeePayrollservice where gender = 'F' group by gender
 
+---------UC8 Ability to extend store employee information like employee phone, address and department--------
+
+alter table EmployeePayrollservice  Add phonenumber varchar(200)  
+alter table EmployeePayrollservice Add Address varchar(250) 
+alter table EmployeePayrollservice Add Department varchar(250)
+
+insert into EmployeePayrollservice(Name,Salary,StartDate,phonenumber,Address,Department)values
+                                                 
+												 ('navitha',10000,GETDATE(),9867543876,'Banglore','HR'),
+						                         ('Devi',20000,GETDATE(),6789543786,'Chennai','Manager'),
+												 ('Madhu',40000,GETDATE(),6543789534,'Vizag','Marketing Manager'),
+												 ('kiran',35000,GETDATE(),9867543783,'Hyderabad','Asst.Manager'),
+												 ('Akshara',45000,GETDATE(),9956784352,'Vijayawada','TeamLead'),
+												 ('Aditya',85000,GETDATE(),6598763298,'Kolkata','Executive Emp')
+
+
+Drop table EmployeePayrollservice
+select * from EmployeePayrollservice
+
+-------------UC9 Ability to extend employee_payroll table to have Basic Pay,Deductions, Taxable Pay,Income Tax, Net Pay-------------------------------------
+alter table EmployeePayrollservice add Deduction bigint 
+alter table EmployeePayrollservice add Taxablepay bigint 
+alter table EmployeePayrollservice add Tax bigint 
+alter table EmployeePayrollservice add Netpay bigint 
+--------------UC10 TERISA-------------------------
+insert into EmployeePayrollservice(Name,Salary,StartDate,gender)values ('Terisa',55000,GETDATE(),'F')
+insert into EmployeePayrollservice(Name,Salary,StartDate,phonenumber,Address,Department,gender,Deduction,Taxablepay,Tax,Netpay)values ('Terisa',3000000,GETDATE(),6789546738,'Banglore','HR','F',10000,300000,200000,1500000)
 
 
 
-
+ 
